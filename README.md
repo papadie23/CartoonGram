@@ -1,4 +1,5 @@
 🎨 CartoonGram – Observer Design Pattern
+
 CartoonGram is a social network-style application built in Java with a graphical user interface (GUI), created to demonstrate the implementation of the Observer design pattern. The project was developed during the 3rd year of university, turning a theoretical concept into an interactive and fun platform populated by cartoon characters.
 
 🚀 Concept & Functionality
