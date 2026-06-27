@@ -18,10 +18,10 @@ public class GUIinit extends JFrame {
 
     public GUIinit() {
         super("CartoonGram");
-        setType(javax.swing.JFrame.Type.UTILITY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-        setResizable(false);
+        setResizable(true);
+        setMinimumSize(new Dimension(380, 500));
 
         followSubject = new FollowSubject();
         followersWindow = new FollowersWindow(this); // pass the main window reference
@@ -36,7 +36,7 @@ public class GUIinit extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
         add(bottomNavBar, BorderLayout.SOUTH);
 
-        setSize(400, 620);
+        setSize(420, 700);
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -47,11 +47,11 @@ public class GUIinit extends JFrame {
 
         String basePath = "src/pk1/";
         Object[][] characters = {
-            {"Tom", "tomthecat", basePath + "tom/pf.jpg", 4, "Description by Tom"},
-            {"Jake", "jake_adventuretime", basePath + "jake/pf.jpg", 3, "Description by Jake"},
-            {"Princess Bubblegum", "princessgumb", basePath + "princessgumb/pf.jpg", 3, "Description by Bubblegum"},
-            {"Gumball", "gumball_waterson", basePath + "gumball/pf.jpg", 3, "Description by Gumball"},
-            {"Darwin", "darwin_fishbuddy", basePath + "darwin/pf.jpg", 3, "Description by Darwin"},
+            {"Tom", "tomthecat", basePath + "tom/pf.jpg", 4, "Just caught Jerry... almost!"},
+            {"Jake", "jake_adventuretime", basePath + "jake/pf.jpg", 3, "Bacon pancakes, makin' bacon pancakes!"},
+            {"Princess Bubblegum", "princessgumb", basePath + "princessgumb/pf.jpg", 3, "Science. It works."},
+            {"Gumball", "gumball_waterson", basePath + "gumball/pf.jpg", 3, "What the what?!"},
+            {"Darwin", "darwin_fishbuddy", basePath + "darwin/pf.jpg", 3, "Just keep swimming!"},
         };
         //hashmap pentru fiecare caracter
         Map<String, FollowSubject> followSubjects = new HashMap<>();
