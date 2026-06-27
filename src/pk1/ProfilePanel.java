@@ -2,6 +2,7 @@ package pk1;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class ProfilePanel extends JPanel {
     private static final long serialVersionUID = 1L;
@@ -10,63 +11,130 @@ public class ProfilePanel extends JPanel {
     private boolean isCommentSectionVisible = false;
     private Timer slideTimer;
     private int targetHeight;
+    private PhotoLabel photoLabel;
+    private JLabel likesLabel;
+    private int likeCount;
+    private Random rng = new Random();
 
     public ProfilePanel(String characterName, String userName, String profileImagePath, String photoText, String postImagePath, String captionText, String descriptionText, FollowersWindow followersWindow, FollowSubject followSubject) {
         this.postImagePath = postImagePath;
+        this.likeCount = rng.nextInt(200) + 5;
 
         setLayout(null);
-        setPreferredSize(new Dimension(400, 450)); // initial height without the comment section/inaltime initiala fara sectiunea de comentarii
-        setBackground(new Color(255, 255, 255, 0)); // set background to be transparent/setare background transparent 
+        setPreferredSize(new Dimension(400, 405));
+        setBackground(new Color(255, 255, 255, 0));
 
         ProfileLabel profileLabel = new ProfileLabel(characterName, profileImagePath);
-        profileLabel.setBounds(10, 10, 45, 45);
+        profileLabel.setBounds(8, 8, 36, 36);
         add(profileLabel);
 
-        UserNameLabel nameLabel = new UserNameLabel(userName); // use UserNameLabel instead
-        nameLabel.setBounds(60, 15, 200, 45);
+        UserNameLabel nameLabel = new UserNameLabel(userName);
+        nameLabel.setBounds(50, 10, 160, 30);
         add(nameLabel);
 
+        JButton optionsBtn = new JButton("\u22EF");
+        optionsBtn.setFont(new Font("Arial", Font.BOLD, 18));
+        optionsBtn.setBounds(340, 4, 50, 36);
+        optionsBtn.setFocusPainted(false);
+        optionsBtn.setBorderPainted(false);
+        optionsBtn.setContentAreaFilled(false);
+        optionsBtn.setForeground(Color.DARK_GRAY);
+        add(optionsBtn);
+
         FollowButton followButton = new FollowButton(followSubject, followersWindow, characterName);
-        followButton.setBounds(260, 20, 90, 30); // adjusted position to align with profile picture
+        followButton.setBounds(230, 10, 95, 30);
         add(followButton);
 
         Follower follower = new Follower(characterName, followersWindow);
         followSubject.attach(follower);
 
         LikeButton likeButton = new LikeButton();
-        likeButton.setBounds(10, 380, 50, 50);
+        likeButton.setBounds(8, 352, 36, 36);
         add(likeButton);
 
-        CommentButton commentButton = new CommentButton();
-        commentButton.setBounds(50, 395, 100, 30);
-        add(commentButton);
+        JButton commentIconBtn = new JButton("\uD83D\uDCAC");
+        commentIconBtn.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 18));
+        commentIconBtn.setBounds(52, 354, 36, 36);
+        commentIconBtn.setFocusPainted(false);
+        commentIconBtn.setBorderPainted(false);
+        commentIconBtn.setContentAreaFilled(false);
+        commentIconBtn.addActionListener(e -> toggleCommentSection());
+        add(commentIconBtn);
 
-        PhotoLabel photoLabel = new PhotoLabel(photoText, postImagePath, likeButton); // pass the LikeButton
-        photoLabel.setBounds(0, 70, 400, 300); // adjusted to remove white space
+        JButton shareBtn = new JButton("\u27A8");
+        shareBtn.setFont(new Font("Arial", Font.BOLD, 16));
+        shareBtn.setBounds(94, 354, 36, 36);
+        shareBtn.setFocusPainted(false);
+        shareBtn.setBorderPainted(false);
+        shareBtn.setContentAreaFilled(false);
+        shareBtn.setForeground(Color.DARK_GRAY);
+        add(shareBtn);
+
+        JButton bookmarkBtn = new JButton("\u2661");
+        bookmarkBtn.setFont(new Font("Arial", Font.PLAIN, 18));
+        bookmarkBtn.setBounds(350, 354, 40, 36);
+        bookmarkBtn.setFocusPainted(false);
+        bookmarkBtn.setBorderPainted(false);
+        bookmarkBtn.setContentAreaFilled(false);
+        bookmarkBtn.setForeground(Color.DARK_GRAY);
+        bookmarkBtn.addActionListener(e -> {
+            bookmarkBtn.setText(bookmarkBtn.getText().equals("\u2661") ? "\u2665" : "\u2661");
+        });
+        add(bookmarkBtn);
+
+        likesLabel = new JLabel(likeCount + " likes");
+        likesLabel.setFont(new Font("Arial", Font.BOLD, 12));
+        likesLabel.setBounds(12, 388, 200, 18);
+        likesLabel.setForeground(new Color(38, 38, 38));
+        add(likesLabel);
+
+        likeButton.addActionListener(e -> {
+            if (likeButton.isLiked()) {
+                likeCount++;
+            } else {
+                likeCount--;
+            }
+            likesLabel.setText(likeCount + " likes");
+        });
+
+        photoLabel = new PhotoLabel(photoText, postImagePath, likeButton);
+        photoLabel.setBounds(0, 50, 400, 290);
         add(photoLabel);
-//never used
-        JLabel captionLabel = new JLabel("<html>" + captionText + "</html>");
-        captionLabel.setBounds(10, 360, 380, 30);
+
+        JLabel captionLabel = new JLabel("<html><b>" + userName + "</b> " + captionText + "</html>");
+        captionLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+        captionLabel.setBounds(12, 395, 370, 32);
         add(captionLabel);
-        //created but not went further/creat dar nu am mers mai departe
-        JLabel descriptionLabel = new JLabel("<html>" + descriptionText + "</html>");
-        descriptionLabel.setBounds(10, 430, 380, 30); 
-        //sectiune comentarii
+
+        JLabel timestamp = new JLabel(getRandomTimestamp());
+        timestamp.setFont(new Font("Arial", Font.PLAIN, 10));
+        timestamp.setForeground(new Color(142, 142, 142));
+        timestamp.setBounds(12, 370, 200, 16);
+        add(timestamp);
+
         commentSection = new CommentSection();
-        commentSection.setBounds(10, 470, 380, 150); // adjust position as needed
+        commentSection.setBounds(10, 430, 380, 150);
         commentSection.setVisible(false);
         add(commentSection);
-
-        commentButton.addActionListener(e -> {
-            toggleCommentSection();
-        });
     }
-//implementation of a timer to change the height liniarly so we get the animation effect
-    //implementare cu timer pentru animatie
+
+    private String getRandomTimestamp() {
+        String[] times = {"2 minutes ago", "15 minutes ago", "1 hour ago", "3 hours ago", "5 hours ago", "8 hours ago", "12 hours ago", "1 day ago"};
+        return times[rng.nextInt(times.length)];
+    }
+
+    @Override
+    public void setBounds(int x, int y, int width, int height) {
+        super.setBounds(x, y, width, height);
+        if (photoLabel != null) {
+            photoLabel.updateBounds(width);
+        }
+    }
+
     private void toggleCommentSection() {
         isCommentSectionVisible = !isCommentSectionVisible;
         commentSection.setVisible(isCommentSectionVisible);
-        targetHeight = isCommentSectionVisible ? 650 : 500; // adjust the height based on comment section visibility
+        targetHeight = isCommentSectionVisible ? 600 : 440;
         if (slideTimer != null && slideTimer.isRunning()) {
             slideTimer.stop();
         }
@@ -78,9 +146,9 @@ public class ProfilePanel extends JPanel {
         Dimension currentSize = getPreferredSize();
         int currentHeight = currentSize.height;
         if (isCommentSectionVisible && currentHeight < targetHeight) {
-            setPreferredSize(new Dimension(400, currentHeight + 10));
+            setPreferredSize(new Dimension(getWidth(), currentHeight + 10));
         } else if (!isCommentSectionVisible && currentHeight > targetHeight) {
-            setPreferredSize(new Dimension(400, currentHeight - 10));
+            setPreferredSize(new Dimension(getWidth(), currentHeight - 10));
         } else {
             slideTimer.stop();
         }
@@ -92,18 +160,12 @@ public class ProfilePanel extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g.create();
-
-        // enable anti-aliasing for smoother drawing
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        // draw rounded rectangle with a white fill
         g2.setColor(Color.WHITE);
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
-
-        // draw rounded rectangle border
-        g2.setColor(Color.GRAY);
-        g2.drawRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
-
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), 12, 12);
+        g2.setColor(new Color(219, 219, 219));
+        g2.setStroke(new BasicStroke(0.8f));
+        g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 12, 12);
         g2.dispose();
     }
 

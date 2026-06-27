@@ -7,7 +7,7 @@
 ---
 
 <p align="center">
-  <img src="screenshots/poza1%20interfata%20generala.png" alt="Main Feed" width="300" />
+  <img src="screenshots/main_feed.png" alt="Main Feed" width="300" />
   <img src="screenshots/sectiune%20comentarii.png" alt="Comments" width="300" />
   <img src="screenshots/poza%20following%20window.png" alt="Following Window" width="300" />
   <img src="screenshots/tranzitie%20postari.png" alt="Post Transition" width="300" />
@@ -59,7 +59,7 @@ Opens a 400×600 Swing window.
 ## Screenshots
 
 ### Main feed
-![Main Feed](screenshots/poza1%20interfata%20generala.png)
+![Main Feed](screenshots/main_feed.png)
 
 ### Comment section
 ![Comments](screenshots/sectiune%20comentarii.png)

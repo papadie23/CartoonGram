@@ -15,7 +15,7 @@ public class LikeButton extends JButton {
 	private static final long serialVersionUID = 1L;
 
 	public Icon createHeartIcon(boolean filled) {
-        int size = 50; // define size for the heart icon/marime iconita inima
+        int size = 36;
         BufferedImage image = new BufferedImage(size, size, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2 = image.createGraphics();
 
@@ -45,7 +45,6 @@ public class LikeButton extends JButton {
         emptyHeartIcon = createHeartIcon(false);
         filledHeartIcon = createHeartIcon(true);
         setIcon(emptyHeartIcon);
-        setBounds(10, 380, 50, 50);
         setBorderPainted(false);
         setContentAreaFilled(false);
         setFocusPainted(false);
@@ -55,6 +54,10 @@ public class LikeButton extends JButton {
                 toggleLike();
             }
         });
+    }
+
+    public boolean isLiked() {
+        return isLiked;
     }
 
     private void toggleLike() {

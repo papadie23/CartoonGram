@@ -18,7 +18,7 @@ public class GUIinit extends JFrame {
 
     public GUIinit() {
         super("CartoonGram");
-        setSize(400, 600);
+        setType(javax.swing.JFrame.Type.UTILITY);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         setResizable(false);
@@ -36,6 +36,8 @@ public class GUIinit extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
         add(bottomNavBar, BorderLayout.SOUTH);
 
+        setSize(400, 620);
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
@@ -70,7 +72,7 @@ public class GUIinit extends JFrame {
                 String postImagePath = profileImagePath.replace("pf.jpg", postIndex + ".jpg");
                 ProfilePanel profilePanel = new ProfilePanel(characterName, userName, profileImagePath, "Photo Posted", postImagePath, "", (String) character[4], followersWindow, followSubject);
                 contentPanel.add(profilePanel);
-                contentPanel.add(Box.createRigidArea(new Dimension(0, 5)));
+                contentPanel.add(Box.createRigidArea(new Dimension(0, 3)));
             }
         }
 
