@@ -1,54 +1,89 @@
-# 🎨 CartoonGram – Observer Design Pattern
+# CartoonGram
 
-**CartoonGram** is a Java-based social network-style application with a graphical user interface (GUI), developed to demonstrate the implementation of the **Observer design pattern**.
+**University project — 3rd year, Observer Design Pattern**
 
-The project was created during my third year of university, transforming a theoretical concept into an interactive and engaging platform populated by cartoon characters.
-
----
-
-## 🚀 Concept & Functionality
-
-The core idea of the application is to simulate the dynamics of a social network:
-
-- **Subjects**: Characters that create and publish content  
-- **Observers**: Followers who receive instant notifications whenever a character they follow posts an update  
-
-### Why the Observer Pattern?
-
-The Observer design pattern was chosen because it closely mirrors the architecture of real-time notification systems. It enables loose coupling between components, meaning that CartoonGram "celebrities" do not need to know exactly who follows them — they simply notify all subscribed observers whenever a state change occurs.
+**Team:** Vleju Cosmin Eugen, Slătineanu Andreea-Elena
 
 ---
 
-## 🛠️ Technologies Used
-
-- **Language**: Java  
-- **Architecture**: Observer Design Pattern  
-- **Tools**: Eclipse, Git  
-
----
-
-## 💡 Lessons Learned & Soft Skills
-
-This project contributed not only to my technical skills, but also to my personal and professional development:
-
-- **Attention to Detail**  
-  Debugging complex GUI issues and managing data flow between subjects and observers improved my ability to write reliable and maintainable code.
-
-- **Deepening Java Knowledge**  
-  Gained a deeper understanding of advanced object-oriented programming (OOP) concepts and event-driven programming in GUI applications.
-
-- **Communication & Presentation**  
-  Presenting the project in front of peers helped me improve my public speaking skills and ability to explain technical concepts clearly.
-
-- **Collaboration**  
-  Teamwork required aligning ideas, distributing tasks efficiently, and delivering a cohesive final product.
+<p align="center">
+  <img src="screenshots/poza1 interfata generala.png" alt="Main Feed" width="300" />
+  <img src="screenshots/sectiune comentarii.png" alt="Comments" width="300" />
+  <img src="screenshots/poza following window.png" alt="Following Window" width="300" />
+  <img src="screenshots/tranzitie postari.png" alt="Post Transition" width="300" />
+</p>
 
 ---
 
-## ⚙️ Installation
+## What's this?
 
-Clone the repository:
+A social network simulator built in Java Swing with cartoon characters as users. It's an implementation of the Observer design pattern — characters post content, and followers get notified in real time when someone they follow publishes something.
+
+The feed shows posts from Tom (Tom & Jerry), Jake and Princess Bubblegum (Adventure Time), Gumball and Darwin (The Amazing World of Gumball). You can follow/unfollow, like posts (custom heart icon drawn with Java2D Bezier curves), and leave comments (animated slide-in section).
+
+The follow system uses a custom Observer pattern — each character is a Subject with its own list of Observers. When you hit Follow, both the Followers window and the button itself update instantly, without the character knowing who follows it.
+
+---
+
+## How the Observer pattern works here
+
+- **Subject** — each character (`FollowSubject`) holds a list of observers and a follow/unfollow state
+- **Observers** — the `FollowButton` toggles its label, and a `Follower` object adds/removes the name from the Following window
+- When you click Follow, `setFollowed()` triggers `notifyObservers()`, which calls `update()` on everything attached
+
+---
+
+## What it looks like
+
+The UI is a 400×600 phone-like window with scrollable feed, profile pics, post images, follow buttons, likes, and a bottom nav bar. Custom drawn heart icon for likes (empty/filled states), smooth comment section animation, and an animated scroll-to-top button.
+
+---
+
+## Running it
 
 ```bash
 git clone https://github.com/papadie23/CartoonGram.git
+cd CartoonGram
+
+# Compile (requires JDK)
+javac -d bin src/pk1/*.java
+
+# Run
+java -cp bin pk1.GUIinit
 ```
+
+Opens a 400×600 Swing window.
+
+---
+
+## Screenshots
+
+### Main feed
+![Main Feed](screenshots/poza1%20interfata%20generala.bmp)
+
+### Comment section
+![Comments](screenshots/sectiune%20comentarii.bmp)
+
+### Following window
+![Following](screenshots/poza%20following%20window.bmp)
+
+### Post transitions
+![Transitions](screenshots/tranzitie%20postari.bmp)
+
+### Follow state change
+![Follow](screenshots/schimbare%20follow.bmp)
+
+### Following window update
+![Follow Window](screenshots/schimbare%20window%20follow.bmp)
+
+---
+
+## Tech
+
+Java, Swing, Java2D, custom Observer pattern
+
+---
+
+## Why we built this
+
+Part of our 3rd year software engineering coursework — to understand how the Observer pattern works under the hood, applied to something fun rather than a boring tutorial example.

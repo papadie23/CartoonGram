@@ -43,13 +43,13 @@ public class GUIinit extends JFrame {
         JPanel contentPanel = new JPanel();
         contentPanel.setLayout(new BoxLayout(contentPanel, BoxLayout.Y_AXIS));
 
-        String basePath = "src\\pk1\\";
+        String basePath = "src/pk1/";
         Object[][] characters = {
-            {"Tom", "tomthecat", basePath + "tom\\pf.jpg", 4, "Description by Tom"},
-            {"Jake", "jake_adventuretime", basePath + "jake\\pf.jpg", 3, "Description by Jake"},
-            {"Princess Bubblegum", "princessgumb", basePath + "princessgumb\\pf.jpg", 3, "Description by Bubblegum"},
-            {"Gumball", "gumball_waterson", basePath + "gumball\\pf.jpg", 3, "Description by Gumball"},
-            {"Darwin", "darwin_fishbuddy", basePath + "darwin\\pf.jpg", 3, "Description by Darwin"},
+            {"Tom", "tomthecat", basePath + "tom/pf.jpg", 4, "Description by Tom"},
+            {"Jake", "jake_adventuretime", basePath + "jake/pf.jpg", 3, "Description by Jake"},
+            {"Princess Bubblegum", "princessgumb", basePath + "princessgumb/pf.jpg", 3, "Description by Bubblegum"},
+            {"Gumball", "gumball_waterson", basePath + "gumball/pf.jpg", 3, "Description by Gumball"},
+            {"Darwin", "darwin_fishbuddy", basePath + "darwin/pf.jpg", 3, "Description by Darwin"},
         };
         //hashmap pentru fiecare caracter
         Map<String, FollowSubject> followSubjects = new HashMap<>();
