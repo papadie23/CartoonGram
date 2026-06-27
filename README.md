@@ -7,10 +7,10 @@
 ---
 
 <p align="center">
-  <img src="screenshots/poza1 interfata generala.png" alt="Main Feed" width="300" />
-  <img src="screenshots/sectiune comentarii.png" alt="Comments" width="300" />
-  <img src="screenshots/poza following window.png" alt="Following Window" width="300" />
-  <img src="screenshots/tranzitie postari.png" alt="Post Transition" width="300" />
+  <img src="screenshots/poza1%20interfata%20generala.png" alt="Main Feed" width="300" />
+  <img src="screenshots/sectiune%20comentarii.png" alt="Comments" width="300" />
+  <img src="screenshots/poza%20following%20window.png" alt="Following Window" width="300" />
+  <img src="screenshots/tranzitie%20postari.png" alt="Post Transition" width="300" />
 </p>
 
 ---
@@ -59,22 +59,22 @@ Opens a 400×600 Swing window.
 ## Screenshots
 
 ### Main feed
-![Main Feed](screenshots/poza1%20interfata%20generala.bmp)
+![Main Feed](screenshots/poza1%20interfata%20generala.png)
 
 ### Comment section
-![Comments](screenshots/sectiune%20comentarii.bmp)
+![Comments](screenshots/sectiune%20comentarii.png)
 
 ### Following window
-![Following](screenshots/poza%20following%20window.bmp)
+![Following](screenshots/poza%20following%20window.png)
 
 ### Post transitions
-![Transitions](screenshots/tranzitie%20postari.bmp)
+![Transitions](screenshots/tranzitie%20postari.png)
 
 ### Follow state change
-![Follow](screenshots/schimbare%20follow.bmp)
+![Follow](screenshots/schimbare%20follow.png)
 
 ### Following window update
-![Follow Window](screenshots/schimbare%20window%20follow.bmp)
+![Follow Window](screenshots/schimbare%20window%20follow.png)
 
 ---
 
